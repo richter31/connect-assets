@@ -67,7 +67,7 @@ describe("serveAsset filesystem", function () {
         http.get(url, function (res) {
           expect(res.statusCode).to.equal(200);
           expect(fs.statSync(dir).isDirectory()).to.equal(true);
-          expect(fs.statSync(dir + "/blank-54acb57afb70110fb7f8e1de35e176b4.css").isFile()).to.equal(true);
+          expect(fs.statSync(dir + "/blank-1e6dbfaaa068a191cfd257c013ddd699.css").isFile()).to.equal(true);
 
           process.env.NODE_ENV = env;
           rmrf(dir, done);
