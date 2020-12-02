@@ -14,14 +14,14 @@ describe("serveAsset minification", function () {
 
     createServer.call(this, { buildDir: dir }, function () {
       var path = this.assetPath("unminified.js");
-      var filename = dir + "/unminified-7f7c719c7128b10ce7400464787a795c.js";
+      var filename = dir + "/unminified-37ee36308d9eb1f62918b6f5ee07ca70.js";
       var url = this.host + path;
 
       http.get(url, function (res) {
         expect(res.statusCode).to.equal(200);
         expect(fs.statSync(dir).isDirectory()).to.equal(true);
         expect(fs.statSync(filename).isFile()).to.equal(true);
-        expect(fs.readFileSync(filename, "utf8")).to.equal('!function(){var n="A string",a={aLongKeyName:function(){return n}};a.aLongKeyName()}();');
+        expect(fs.readFileSync(filename, "utf8")).to.equal('!function(){var n={aLongKeyName:function(){return"A string"}};n.aLongKeyName()}();');
 
         process.env.NODE_ENV = env;
         rmrf(dir, done);
@@ -36,7 +36,7 @@ describe("serveAsset minification", function () {
 
     createServer.call(this, { buildDir: dir }, function () {
       var path = this.assetPath("unminified.css");
-      var filename = dir + "/unminified-f34e2abf5b7497977195904e60f06031.css";
+      var filename = dir + "/unminified-c6a884d1db05607b788c9b955433014e.css";
       var url = this.host + path;
 
       http.get(url, function (res) {
