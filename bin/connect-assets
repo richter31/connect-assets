@@ -7,8 +7,7 @@ var mincer = require("mincer");
 var initialize = exports.initialize = function () {
   var cli = new ArgumentParser({
     prog: "connect-assets",
-    version: require("../package.json").version,
-    addHelp: true,
+    add_help: true,
     description: "Precompiles assets supplied into their production-ready " +
       "form, ready for upload to a CDN or static file server. The generated " +
       "manifest.json is all that is required on your application server if " +
@@ -18,49 +17,54 @@ var initialize = exports.initialize = function () {
       "source of this file for help)."
   });
 
-  cli.addArgument(["-i", "--include"], {
+  cli.add_argument('-v', '--version', {
+    action: 'version',
+    version: require("../package.json").version
+  });
+
+  cli.add_argument("-i", "--include", {
     help: "Adds the directory to a list of directories that assets will be " +
       "read from, in order of preference. Defaults to 'assets/js' and " +
       "'assets/css'.",
     metavar: "DIRECTORY",
     action: "append",
     nargs: "*",
-    defaultValue: [ "assets/js", "assets/css" ]
+    default: [ "assets/js", "assets/css" ]
   });
 
-  cli.addArgument(["-c", "--compile"], {
+  cli.add_argument("-c", "--compile", {
     help: "Adds the file (or pattern) to a list of files to compile. " +
       "Defaults to all files with extensions.",
     metavar: "FILE",
     action: "append",
     nargs: "*",
-    defaultValue: ["*.*"]
+    default: ["*.*"]
   });
 
-  cli.addArgument(["-o", "--output"], {
+  cli.add_argument("-o", "--output", {
     help: "Specifies the output directory to write compiled assets to. " +
       "Defaults to 'builtAssets'.",
     metavar: "DIRECTORY",
-    defaultValue: "builtAssets"
+    default: "builtAssets"
   });
 
-  cli.addArgument(["-s", "--servePath"], {
+  cli.add_argument("-s", "--servePath", {
     help: "The virtual path in which assets will be served over HTTP. " +
       "If hosting assets locally, supply a local path (say, \"assets\"). " +
       "If hosting assets remotely on a CDN, supply a URL.",
-    defaultValue: "assets"
+    default: "assets"
   });
 
-  cli.addArgument(["-gz", "--gzip"], {
+  cli.add_argument("-gz", "--gzip", {
     help: "Enables gzip file generation, which is disabled by default.",
-    action: 'storeTrue',
-    defaultValue: false
+    action: 'store_true',
+    default: false
   });
 
-  cli.addArgument(["-ap", "--autoprefixer"], {
+  cli.add_argument("-ap", "--autoprefixer", {
     help: "Enables autoprefixer during compilation.",
-    action: 'storeTrue',
-    defaultValue: false
+    action: 'store_true',
+    default: false
   });
 
   return cli;
@@ -75,7 +79,7 @@ var execute = exports.execute = function (logger, callback) {
 };
 
 var prepare = exports.prepare = function (cli) {
-  var args = cli.parseArgs();
+  var args = cli.parse_args();
 
   args.include = flatten(args.include);
   args.compile = flatten(args.compile);

@@ -132,11 +132,11 @@ describe("serveAsset headers", function () {
     it("sends HTTP 405 when method is PUT", sends405("PUT"));
     it("sends HTTP 405 when method is DELETE", sends405("DELETE"));
 
-    it("sends HTTP 400 if request contains '..'", function (done) {
+    it("sends HTTP 404 if request contains '..'", function (done) {
       var url = this.host + "/assets/../../../usr/var";
 
       http.get(url, function (res) {
-        expect(res.statusCode).to.equal(400);
+        expect(res.statusCode).to.equal(404);
         done();
       });
     });
