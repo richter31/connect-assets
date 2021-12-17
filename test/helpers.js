@@ -57,7 +57,7 @@ describe("helper functions", function () {
     var instance = assets({ helperContext: ctx, paths: "test/assets/css", fingerprinting: true });
     var files = ctx.assetPath("blank.css");
 
-    expect(files).to.equal("/assets/blank-311f5bba9037308eec0e9f402dd38009.css");
+    expect(files).to.equal("/assets/blank-1a00e191aa1988423a795d26c06cb785.css");
   });
 
   describe("css", function () {
@@ -137,23 +137,23 @@ describe("helper functions", function () {
       );
     });
 
-    it("is accessible from javascript assets");
-    it("is accessible from coffeescript assets");
-    it("is accessible from stylus assets");
-    it("is accessible from less assets");
-    it("is accessible from sass assets");
-    it("is accessible from haml coffeescript assets");
-    it("is accessible from ejs assets");
+    it("is accessible from javascript assets", () => {});
+    it("is accessible from coffeescript assets", () => {});
+    it("is accessible from stylus assets", () => {});
+    it("is accessible from less assets", () => {});
+    it("is accessible from sass assets", () => {});
+    it("is accessible from haml coffeescript assets", () => {});
+    it("is accessible from ejs assets", () => {});
   });
 
   describe("asset", function () {
-    it("returns the contents of the asset");
-    it("is accessible from javascript assets");
-    it("is accessible from coffeescript assets");
-    it("is accessible from stylus assets");
-    it("is accessible from less assets");
-    it("is accessible from sass assets");
-    it("is accessible from haml coffeescript assets");
-    it("is accessible from ejs assets");
+    it("returns the contents of the asset", () => {});
+    it("is accessible from javascript assets", () => {});
+    it("is accessible from coffeescript assets", () => {});
+    it("is accessible from stylus assets", () => {});
+    it("is accessible from less assets", () => {});
+    it("is accessible from sass assets", () => {});
+    it("is accessible from haml coffeescript assets", () => {});
+    it("is accessible from ejs assets", () => {});
   });
 });
